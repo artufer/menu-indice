@@ -45,11 +45,11 @@
 
         .grid-container {
             display: grid;
-            /* Esto permite máximo 3 columnas en pantallas grandes (280*3 + gaps = ~890px < 950px) */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            /* Fuerza exactamente 2 columnas en pantallas de escritorio */
+            grid-template-columns: repeat(2, 1fr);
             gap: 25px;
             width: 100%;
-            max-width: 950px; /* Ancho máximo que fuerza el salto de línea después de 3 elementos */
+            max-width: 750px; /* Ancho máximo para que las 2 columnas se vean proporcionadas */
             justify-content: center;
         }
 
@@ -100,8 +100,8 @@
             text-align: center;
         }
 
-        /* Ajuste para móviles: una sola columna */
-        @media (max-width: 600px) {
+        /* Ajuste para móviles: una sola columna para que sea fácil de pulsar */
+        @media (max-width: 650px) {
             .grid-container {
                 grid-template-columns: 1fr;
                 max-width: 400px;
@@ -130,16 +130,10 @@
     <script>
         // ==========================================
         // ZONA DE CONFIGURACIÓN: AÑADE TUS APPS AQUÍ
-        // El orden de esta lista determina el orden visual.
-        // Las posiciones 4 y 5 aparecerán juntas en la segunda línea.
+        // El orden de esta lista determina el orden visual (de arriba a abajo, izquierda a derecha).
         // ==========================================
         const aplicaciones = [
-            {
-                nombre: "Control de Papel",
-                url: "https://artufer.github.io/control-papel/",
-                descripcion: "Gestión y control de inventario de papel.",
-                icono: "📄"
-            },
+            // --- LÍNEA 1 ---
             {
                 nombre: "Permisos",
                 url: "https://artufer.github.io/permisos/",
@@ -147,11 +141,25 @@
                 icono: "✅"
             },
             {
+                nombre: "Solicitud de Vacaciones",
+                url: "https://artufer.github.io/solicitud-vacaciones/",
+                descripcion: "Gestión y solicitud de días de vacaciones.",
+                icono: "📅"
+            },
+            // --- LÍNEA 2 ---
+            {
+                nombre: "Control de Papel",
+                url: "https://artufer.github.io/control-papel/",
+                descripcion: "Gestión y control de inventario de papel.",
+                icono: "📄"
+            },
+            {
                 nombre: "Productos de Limpieza",
                 url: "https://artufer.github.io/productos-limpieza/",
                 descripcion: "Control de stock de productos de limpieza.",
                 icono: "🧹"
             },
+            // --- LÍNEA 3 ---
             {
                 nombre: "Gestión de Alumnos",
                 url: "https://adfe-leon.github.io/alumnos/",
@@ -165,8 +173,9 @@
                 icono: "🌱"
             }
             // PARA AÑADIR UNA NUEVA: 
-            // 1. Añade una coma "," al final del bloque anterior (el de Gestor de Semillas).
+            // 1. Añade una coma "," al final del último bloque.
             // 2. Pega el nuevo bloque { nombre, url, descripcion, icono } aquí abajo.
+            // Nota: Al añadir una 7ª app, comenzará una 4ª línea con 1 elemento.
         ];
 
         // ==========================================
