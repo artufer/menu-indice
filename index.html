@@ -12,6 +12,7 @@
             --text-secondary: #718096;
             --accent-color: #3182ce;
             --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --gap: 25px;
         }
 
         body {
@@ -47,10 +48,18 @@
             display: grid;
             /* Fuerza exactamente 2 columnas en pantallas de escritorio */
             grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+            gap: var(--gap);
             width: 100%;
-            max-width: 750px; /* Ancho máximo para que las 2 columnas se vean proporcionadas */
+            max-width: 750px;
             justify-content: center;
+        }
+
+        /* TRUCO: Si el número total de tarjetas es IMPAR,
+           la última se centra sola en su fila y mantiene el mismo tamaño. */
+        .app-card:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: calc(50% - var(--gap) / 2);
         }
 
         .app-card {
@@ -100,11 +109,16 @@
             text-align: center;
         }
 
-        /* Ajuste para móviles: una sola columna para que sea fácil de pulsar */
+        /* Ajuste para móviles: una sola columna */
         @media (max-width: 650px) {
             .grid-container {
                 grid-template-columns: 1fr;
                 max-width: 400px;
+            }
+            /* En móvil ya no hace falta centrar la última */
+            .app-card:last-child:nth-child(odd) {
+                grid-column: auto;
+                width: auto;
             }
             h1 {
                 font-size: 2rem;
@@ -130,7 +144,8 @@
     <script>
         // ==========================================
         // ZONA DE CONFIGURACIÓN: AÑADE TUS APPS AQUÍ
-        // El orden de esta lista determina el orden visual (de arriba a abajo, izquierda a derecha).
+        // El orden de esta lista determina el orden visual
+        // (de arriba a abajo, izquierda a derecha, en parejas).
         // ==========================================
         const aplicaciones = [
             // --- LÍNEA 1 ---
@@ -161,21 +176,27 @@
             },
             // --- LÍNEA 3 ---
             {
+                nombre: "Material Deportivo",
+                url: "https://artufer.github.io/material-deportivo/",
+                descripcion: "Control de inventario de material deportivo.",
+                icono: "🏅"
+            },
+            {
                 nombre: "Gestión de Alumnos",
                 url: "https://adfe-leon.github.io/alumnos/",
                 descripcion: "Directorio y gestión de alumnos.",
                 icono: "🎓"
             },
+            // --- LÍNEA 4 (se centrará sola por ser impar) ---
             {
                 nombre: "Gestor de Semillas",
                 url: "https://adfe-leon.github.io/gestor-de-semillas/",
                 descripcion: "Control e inventario de semillas.",
                 icono: "🌱"
             }
-            // PARA AÑADIR UNA NUEVA: 
+            // PARA AÑADIR UNA NUEVA:
             // 1. Añade una coma "," al final del último bloque.
             // 2. Pega el nuevo bloque { nombre, url, descripcion, icono } aquí abajo.
-            // Nota: Al añadir una 7ª app, comenzará una 4ª línea con 1 elemento.
         ];
 
         // ==========================================
@@ -188,13 +209,13 @@
             card.className = 'app-card';
             card.href = app.url;
             card.target = '_blank'; // Abre en una pestaña nueva
-            
+
             card.innerHTML = `
                 <div class="app-icon">${app.icono}</div>
                 <div class="app-name">${app.nombre}</div>
                 <div class="app-desc">${app.descripcion}</div>
             `;
-            
+
             grid.appendChild(card);
         });
     </script>
