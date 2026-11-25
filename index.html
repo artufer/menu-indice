@@ -54,7 +54,7 @@
             justify-content: center;
         }
 
-        /* TRUCO: Si el número total de tarjetas es IMPAR,
+        /* TRUCO: Si el número total de tarjetas es IMPAR en el futuro,
            la última se centra sola en su fila y mantiene el mismo tamaño. */
         .app-card:last-child:nth-child(odd) {
             grid-column: 1 / -1;
@@ -163,37 +163,37 @@
             },
             // --- LÍNEA 2 ---
             {
+                nombre: "Control de Cámaras",
+                url: "https://artufer.github.io/camaras-videoconferencia/",
+                descripcion: "Control y gestión de cámaras de videoconferencia.",
+                icono: "📹"
+            },
+            {
                 nombre: "Control de Papel",
                 url: "https://artufer.github.io/control-papel/",
                 descripcion: "Gestión y control de inventario de papel.",
                 icono: "📄"
             },
-            {
-                nombre: "Control de toners",
-                url: "https://artufer.github.io/control-toners/",
-                descripcion: "Control de toners y fotocopiadoras.",
-                icono: "🖨️"
-            },
+            // --- LÍNEA 3 ---
             {
                 nombre: "Productos de Limpieza",
                 url: "https://artufer.github.io/productos-limpieza/",
                 descripcion: "Control de stock de productos de limpieza.",
                 icono: "🧹"
             },
-            // --- LÍNEA 3 ---
             {
                 nombre: "Material Deportivo",
                 url: "https://artufer.github.io/material-deportivo/",
                 descripcion: "Control de inventario de material deportivo.",
                 icono: "🏅"
             },
+            // --- LÍNEA 4 ---
             {
                 nombre: "Gestión de Alumnos",
                 url: "https://adfe-leon.github.io/alumnos/",
                 descripcion: "Directorio y gestión de alumnos.",
                 icono: "🎓"
             },
-            // --- LÍNEA 4 (se centrará sola por ser impar) ---
             {
                 nombre: "Gestor de Semillas",
                 url: "https://adfe-leon.github.io/gestor-de-semillas/",
@@ -201,7 +201,7 @@
                 icono: "🌱"
             }
             // PARA AÑADIR UNA NUEVA:
-            // 1. Añade una coma "," al final del último bloque.
+            // 1. Añade una coma "," al final del último bloque (el de Gestor de Semillas).
             // 2. Pega el nuevo bloque { nombre, url, descripcion, icono } aquí abajo.
         ];
 
